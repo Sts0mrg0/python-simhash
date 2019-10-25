@@ -164,7 +164,7 @@ static PyObject *similar_indices(PyObject *self, PyObject *args)
     qsort(simvals, seq_length, sizeof(struct hashrec), cmp_hashrec);
 
     /* enumerate similar pairs and add to output list */
-    PY_LONG_LONG mask = ((1LL << rotate_bits) - 1) << (HASHBITS - rotate_bits);
+    PY_LONG_LONG mask = ((1LL << keybits) - 1) << (HASHBITS - keybits);
     PyObject *outlist = PyList_New(0);
     for (i=0; i < seq_length - 1; ++i) {
         Py_ssize_t j, ii = simvals[i].offset;
