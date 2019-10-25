@@ -128,8 +128,9 @@ struct hashrec {
 };
 
 static int cmp_hashrec(const void *a, const void *b) {
-    return ((const struct hashrec *) a)->hash -
+    PY_LONG_LONG result = ((const struct hashrec *) a)->hash -
         ((const struct hashrec *) b)->hash;
+    return (result > 0) - (result < 0);
 }
 
 static PyObject *similar_indices(PyObject *self, PyObject *args)
